@@ -1,3 +1,5 @@
+![Banner](img/BANNER_WIDE_TRANSPARENT.png)
+
 # Hermes
 Hermes is a random Discord bot I've been working on that implements many different APIs to create the funniest shitpost bot. 
 
