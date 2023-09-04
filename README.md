@@ -11,6 +11,9 @@ Loads a token that is stored in a `.token` file.
 
 ## Commands
 
+### /wipevc
+Goes through all of the voice channels in the given server and disconnects all participants.
+
 ### /finishthis | `sentence` | `maxwords (optional)`
 Uses the *Bloom* LLM to finish your sentence. `maxwords` specifies the maximum amount of words to generate.
 
