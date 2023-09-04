@@ -6,7 +6,7 @@ import json
 import tokenloader
 
 intents = discord.Intents().all()  # we need all discord intents
-activity = discord.Game(name="witchu")
+activity = discord.Game(name="around")
 
 '''
 Playing -> activity = discord.Game(name="!help")
@@ -33,9 +33,9 @@ async def getctf(interaction):
     if not str(interaction.user.id) in whitelist:
         await interaction.response.send_message("No", ephemeral=True)
         return
-    await interaction.response.send_message("Joining VC", ephemeral=True)
+    await interaction.response.send_message("Wiping VCs", ephemeral=True)
     for voicechannel in interaction.guild.voice_channels:
-        await voicechannel.set_permissions(interaction.guild.default_role, connect=False)
+        #await voicechannel.set_permissions(interaction.guild.default_role, connect=False)
         voiceclient = await voicechannel.connect()
         for member in voicechannel.members:
             if member.bot:
