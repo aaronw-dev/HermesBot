@@ -26,7 +26,22 @@ bloomurl = "https://api-inference.huggingface.co/models/bigscience/bloom"
 convourl = "https://api-inference.huggingface.co/models/facebook/blenderbot-3B"
 headers = {"Authorization": "Bearer " + tokenloader.load("huggingface.token")}
 
-whitelist = ["719678705613537361"]
+whitelist = tokenloader.load("whitelist.token").split(",")
+
+@tree.command(name="wipevc", description="Clears everybody out of every voice channel.")
+async def getctf(interaction):
+    if not str(interaction.user.id) in whitelist:
+        await interaction.response.send_message("No", ephemeral=True)
+        return
+    await interaction.response.send_message("Joining VC", ephemeral=True)
+    for voicechannel in interaction.guild.voice_channels:
+        await voicechannel.set_permissions(interaction.guild.default_role, connect=False)
+        voiceclient = await voicechannel.connect()
+        for member in voicechannel.members:
+            if member.bot:
+                continue
+            await member.move_to(None)
+        await voiceclient.disconnect()
 
 @tree.command(name="finishthis", description="Finish your sentence with AI.")
 async def ctfinfo(interaction, sentence: str, maxwords: int = 30):
